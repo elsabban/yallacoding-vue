@@ -4,24 +4,24 @@
    
        <!-- header -->
     
-           <header-app ></header-app>
+           
   
 <div v-scroll-spy="{data:'section'}">
            <!-- ------- -->
        <!-- main-slider -->
-      <section   class="home">
+      <section id="home"   class="home">
           <main-slider :getData="getData"></main-slider>
       </section>
         <!-- ------- -->
 
         <!-- about section -->
-             <section   class="about">
+             <section id="about"  class="about">
                  <about-sec :aboutData="getData"></about-sec>
              </section>
 
 
         <!-- services section  -->
-        <section  class="services">
+        <section id="service"  class="services">
            <services-sec :serviceData="getData"></services-sec>
         </section>
 
@@ -54,7 +54,7 @@
         </section>
         <!-- footer -->
 </div>
-        <footer-app></footer-app>
+       
     </div>
 </template>
 <script>
@@ -82,7 +82,9 @@ export default {
     },
      mounted() {
         this.$store.dispatch('getData')
+        // this.$store.dispatch('detectSection')
     },
+    
     computed:{
         getData() {
        

@@ -10,28 +10,28 @@
     <span class="icon-bar"></span>
   </button>
   <div class=" navbar-collapse" :class="{ openMenu: isClose}" id="navbarNav">
-    <ul class="navbar-nav" v-scroll-spy-active="{class: 'active'}"  v-scroll-spy-link >
-      <li class="nav-item ">
-        <a class="nav-link" >HOME</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" >ABOUT</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" >SERVICES</a>
-      </li>
+    <ul class="navbar-nav">
+      <router-link to="/home" tag="li" class="nav-item ">
+        <a class="nav-link" data-scroll="home" @click="scroll('home')">HOME</a>
+      </router-link>
+       <router-link to="/home" tag="li" class="nav-item ">
+        <a class="nav-link" data-scroll="about" @click="scroll('about')">ABOUT</a>
+       </router-link>
+        <router-link to="/home" tag="li" class="nav-item ">
+        <a class="nav-link" data-scroll="service" @click="scroll('service')" >SERVICES</a>
+        </router-link>
      <li class="nav-item">
-        <a class="nav-link" >PACKAGES</a>
+        <a class="nav-link" href="#">PACKAGES</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" >BLOG</a>
+        <a class="nav-link" href="#">BLOG</a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">POS</a>
       </li> -->
-      <li class="nav-item">
-        <a class="nav-link" >CONTACT</a>
-      </li>
+      <router-link tag="li" to="/contact" class="nav-item">
+        <a class="nav-link" href="#">CONTACT</a>
+      </router-link>
     </ul>
     <div class="contact">
       <ul class="list-unstyled">
@@ -42,7 +42,6 @@
     </div>
   </div>
 </nav>
-
 </header>
 </template>
 <script>
@@ -50,8 +49,7 @@ export default {
    data() {
      return {
        isClose:false,
-       isActive:false,
-
+       isActive:false
      }
    },
    methods:{
@@ -60,15 +58,16 @@ export default {
           this.isClose = !this.isClose;
      },
      
-    goTo() {
-      $scrollTo(4)
-    }
-  //   scroll(id) {  
-  //      this.isActive = !this.isActive
-  //     this.$store.dispatch('scroll',id)
-  //     this.moveClass(event)
+
+    scroll(id) {  
+      //  this.isActive = !this.isActive
+        if (this.$route.path == "/home") {
+          this.$store.dispatch('scroll',id)
+         }
+      
+      // this.moveClass(event)
      
-  // },
+  },
   // moveClass(e) {
 
   //     if (document.querySelectorAll('.nav-item a.active').length > 0) {
@@ -90,8 +89,26 @@ export default {
    created() {
      const thisComp = this;
 
-        document.addEventListener("scroll", function() {
-   
+        document.addEventListener("scroll", function() {  
+         
+            document.querySelectorAll("[data-scroll]").forEach(function (item) {   
+                if (thisComp.$route.path == "/home") {
+                  if (item.getAttribute('data-scroll') == 'about') {
+                thisComp.$store.dispatch('detectSection','about');
+              
+              }
+              if(item.getAttribute('data-scroll') == 'service') {
+                 thisComp.$store.dispatch('detectSection','service');
+              }
+               if(item.getAttribute('data-scroll') == 'home') {
+                 thisComp.$store.dispatch('detectSection','home');
+              }} 
+              
+            })
+           
+
+
+          
             thisComp.$store.dispatch('scrollEvent',thisComp.$refs.headerer.offsetHeight)
         })
     } 

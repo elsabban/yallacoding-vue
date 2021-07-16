@@ -43,6 +43,17 @@ export default new Vuex.Store({
                 behavior: "smooth"
             });
             console.log('scroll')
+        },
+        detectSection({ commit, dispatch, state }, payload) {
+            var topAbout = document.getElementById(payload).offsetTop - 10;
+            var bottomAbout = document.getElementById(payload).offsetTop + document.getElementById(payload).offsetHeight
+            if (window.scrollY > topAbout && window.scrollY < bottomAbout) {
+                //  console.log(topAbout,window.scrollY,document.getElementById('about').offsetTop)
+                // console.log(document.querySelectorAll('[data-scroll =  ' + payload + ']'))
+                document.querySelectorAll('[data-scroll =  ' + payload + ']')[0].classList.add('active')
+            } else {
+                document.querySelectorAll('[data-scroll =  ' + payload + ']')[0].classList.remove('active')
+            }
         }
     }
 })

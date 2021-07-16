@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-      <home-app></home-app>
+    <header-app ></header-app>
+
+      <router-view></router-view>
+    <footer-app></footer-app>
   </div>
 </template>
 
 <script>
 import homeApp from './components/home.vue'
+import headerApp from './components/common/header.vue'
+import footerApp from './components/common/footer.vue'
 export default {
   name: 'app',
   data () {
@@ -15,6 +20,8 @@ export default {
   },
   components:{
     homeApp,
+    headerApp,
+    footerApp
   },
  
 }
