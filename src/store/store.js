@@ -45,15 +45,24 @@ export default new Vuex.Store({
             console.log('scroll')
         },
         detectSection({ commit, dispatch, state }, payload) {
-            var topAbout = document.getElementById(payload).offsetTop - 10;
-            var bottomAbout = document.getElementById(payload).offsetTop + document.getElementById(payload).offsetHeight
-            if (window.scrollY > topAbout && window.scrollY < bottomAbout) {
+            var topSec = document.getElementById(payload).offsetTop - 10;
+            var bottomSec = document.getElementById(payload).offsetTop + document.getElementById(payload).offsetHeight;
+            var topArea = document.getElementById('about').offsetTop - 10;
+            var bottomArea = document.getElementById('service').offsetHeight + document.getElementById('about').offsetHeight;
+
+            if (window.scrollY > topSec && window.scrollY < bottomSec) {
                 //  console.log(topAbout,window.scrollY,document.getElementById('about').offsetTop)
                 // console.log(document.querySelectorAll('[data-scroll =  ' + payload + ']'))
                 document.querySelectorAll('[data-scroll =  ' + payload + ']')[0].classList.add('active')
+                document.querySelectorAll('[data-scroll =  home]')[0].classList.remove('active')
+
+            } else if (window.scrollY < topArea || window.scrollY > (bottomArea + topArea)) {
+                document.querySelectorAll('[data-scroll =  home]')[0].classList.add('active')
+                document.querySelectorAll('[data-scroll =  ' + payload + ']')[0].classList.remove('active')
             } else {
                 document.querySelectorAll('[data-scroll =  ' + payload + ']')[0].classList.remove('active')
             }
+
         }
     }
 })

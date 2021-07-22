@@ -185,3 +185,248 @@ section.clients {
         max-width: 90%;
     }
 }
+
+
+/* contact page */
+
+.form-sec {
+    background-attachment: scroll;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    /* box-shadow: 0px 0px 10px #4181af42; */
+    border-radius: 1em;
+}
+
+.form-sec .form-head h2 {
+    font-weight: bold;
+    color: #f49421;
+}
+
+.form-sec .form-head p {
+    font-size: 18px;
+    color: white;
+}
+
+.form-sec input,
+.form-sec textarea {
+    border: none;
+    border-bottom: 1px solid #86571c;
+    border-radius: 0;
+    position: relative;
+    background-color: #1b1a1a61;
+    z-index: 1;
+    width: 100%;
+    color: white;
+    box-shadow: 0px 0px 14px 3px #00000045;
+    padding: 8px 12px;
+}
+
+.form-sec textarea {
+    height: 100px;
+    resize: none;
+}
+
+.form-sec .wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    margin: 0.7em 0;
+    width: 100%;
+}
+
+.form-sec .wrapper .under-line {
+    position: absolute;
+    height: 1px;
+    width: 0;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    background-color: #f49421;
+    transition: all 0.3s linear;
+    z-index: 2;
+}
+
+.form-sec .r .under-line {
+    bottom: 7px;
+}
+
+.form-sec input:focus,
+.form-sec textarea:focus {
+    box-shadow: none;
+    outline: 0;
+}
+
+.form-sec input:focus+.under-line,
+.form-sec textarea:focus+.under-line {
+    width: 100%;
+}
+
+.form-sec .btn {
+    padding: 10px 35px;
+    font-size: 18px;
+}
+
+.contact-page .contact-detail h6:not(:first-child) {
+    margin-bottom: auto;
+    margin-top: 1.5em;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+}
+
+.contact-page .contact-detail h2 {
+    font-weight: bold;
+    color: #f49421;
+}
+
+.grey {
+    color: #777777;
+}
+
+.contact-page .contact-detail p {
+    font-size: 18px;
+    color: white;
+}
+
+.contact-page .contact-detail a:link {
+    font-size: 18px;
+    color: #1a8d85;
+    text-decoration: none;
+    transition: 0.2s all linear;
+}
+
+.contact-page .contact-detail a:focus {
+    font-size: 18px;
+    color: rgb(54, 54, 54);
+    text-decoration: none;
+}
+
+.contact-page .contact-detail a:hover {
+    color: #50a8e7;
+}
+
+.contact-page .contact-detail a:visited {
+    font-size: 18px;
+    color: rgb(36, 36, 36);
+    text-decoration: none;
+}
+
+.contact-page .contact-detail a i {
+    color: #f49421;
+}
+
+.contact-page .contact-detail .social li {
+    border: 1px solid black;
+    padding: 7px 14px;
+    transition: all 0.3s linear;
+}
+
+.contact-page .contact-detail .social li i {
+    color: black
+}
+
+ ::-webkit-input-placeholder {
+    opacity: 0.5;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+
+/* Chrome <=56, Safari < 10 */
+
+ :-moz-placeholder {
+    opacity: 0.5;
+    -moz-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+
+/* FF 4-18 */
+
+ ::-moz-placeholder {
+    opacity: 0.5;
+    -moz-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+
+/* FF 19-51 */
+
+ :-ms-input-placeholder {
+    opacity: 0.5;
+    -ms-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+
+/* IE 10+ */
+
+ ::placeholder {
+    opacity: 0.5;
+    transition: opacity .5s;
+}
+
+
+/* Modern Browsers */
+
+*:focus::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+
+/* Chrome <=56, Safari < 10 */
+
+*:focus:-moz-placeholder {
+    opacity: 0;
+}
+
+
+/* FF 4-18 */
+
+*:focus::-moz-placeholder {
+    opacity: 0;
+}
+
+
+/* FF 19-50 */
+
+*:focus:-ms-input-placeholder {
+    opacity: 0;
+}
+
+
+/* IE 10+ */
+
+*:focus::placeholder {
+    opacity: 0;
+}
+
+.contact-page {
+    background-image: url(../img/pattern-1.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #222429;
+    background-size: cover;
+    padding: 120px 0;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(107, 107, 107);
+    opacity: 1;
+    /* Firefox */
+}
+
+ :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgb(107, 107, 107);
+}
+
+ ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgb(107, 107, 107);
+}
+
+
+/* Modern Browsers */

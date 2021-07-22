@@ -6,7 +6,7 @@
     
            
   
-<div v-scroll-spy="{data:'section'}">
+<div>
            <!-- ------- -->
        <!-- main-slider -->
       <section id="home"   class="home">
@@ -77,8 +77,7 @@ export default {
     },
     data(){
         return {
-         section:0
-        }
+                 }
     },
      mounted() {
         this.$store.dispatch('getData')
