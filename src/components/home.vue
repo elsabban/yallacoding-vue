@@ -33,8 +33,8 @@
 
         <!-- blog -->
 
-        <section  class="blog">
-               <blog-sec :blogData="getData"></blog-sec>
+        <section v-if="getData != null" class="blog">
+               <blog-sec :blogData="getData.blog"></blog-sec>
         </section> 
 
         <!-- contact box -->
@@ -79,16 +79,25 @@ export default {
         return {
                  }
     },
-     mounted() {
-        this.$store.dispatch('getData')
+    created() {
+        this.$store.dispatch('getData','homepage')
         // this.$store.dispatch('detectSection')
     },
     
     computed:{
         getData() {
-       
+           
             return this.$store.getters.getData
-        }
+        },
+        // blogData() {
+        
+        //     if (this.$store.getters.getData !=null && this.$store.getters.blogData.length > 2) {
+           
+        //          return this.$store.getters.blogData.slice(0,3)
+        //     }else {
+        //         return this.$store.getters.blogData
+        //     }
+        // }
     },
      
 }

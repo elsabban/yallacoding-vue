@@ -19,11 +19,11 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-12">
                             <div class="about-text">
-                                <h5><span>{{aboutData.homepage.about[0].title | capitalize}} </span> {{aboutData.homepage.about[0].desc }}</h5>
+                                <h5><span>{{aboutData.about[0].title | capitalize}} </span> {{aboutData.about[0].desc }}</h5>
                             </div>
                             <div class="about-items mt-3">
                                 <ul class="list-unstyled">
-                                    <li v-for="(item,index) in aboutData.homepage.about[0].targets" :key="index"><span>{{item.title | capitalize}} : </span>
+                                    <li v-for="(item,index) in aboutData.about[0].targets" :key="index"><span>{{item.title | capitalize}} : </span>
                                    <P> {{item.desc}} </P>
                                     </li>
                                    

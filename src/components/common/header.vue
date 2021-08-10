@@ -10,6 +10,11 @@
             <span class="icon-bar"></span>
         </button>
         <div class=" navbar-collapse" :class="{ openMenu: isClose}" id="navbarNav">
+             <button @click="closeMenu" :class="{ crossAct: isClose}" class="navbar-toggler x">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
             <ul class="navbar-nav">
                 <router-link to="/home" v-slot="{ navigate,isActive,isExactActive ,href}" custom>
                     <li class="nav-item " @click="navigate">
@@ -17,12 +22,12 @@
                     </li>
                 </router-link>
                 <router-link to="/home" v-slot="{ navigate,isExactActive ,href}" custom>
-                    <li class="nav-item " @click="navigate">
+                    <li class="nav-item " :class="{hide : isHome}" @click="navigate">
                         <a class="nav-link" :class="[ isExactActive && 'router-link-exact-active']" data-scroll="about" :href="href" @click=" scroll('about')">ABOUT</a>
                     </li>
                 </router-link>
                 <router-link to="/home" v-slot="{ navigate,isExactActive,href}" custom>
-                    <li class="nav-item " @click="navigate">
+                    <li class="nav-item " :class="{hide : isHome}" @click="navigate">
                         <a class="nav-link" :class="[ isExactActive && 'router-link-exact-active']" data-scroll="service" :href="href" @click=" scroll('service')">SERVICES</a>
                     </li>
                 </router-link>
@@ -35,12 +40,16 @@
                 <!-- <router-link to="/home" tag="li" class="nav-item ">
                     <a class="nav-link" data-scroll="service" @click="scroll('service')">SERVICES</a>
                 </router-link> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">PACKAGES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">BLOG</a>
-                </li>
+                  <router-link to="/packages" v-slot="{isActive, navigate,isExactActive,href}" custom>
+                    <li class="nav-item "  @click="navigate">
+                        <a class="nav-link" :class="[isActive && 'active', isExactActive && 'router-link-exact-active']"  :href="href" >PACKAGES</a>
+                    </li>
+                </router-link>
+                <router-link to="/blog-page" v-slot="{isActive, navigate,isExactActive,href}" custom>
+                    <li class="nav-item "  @click="navigate">
+                        <a class="nav-link" :class="[isActive && 'active', isExactActive && 'router-link-exact-active']"  :href="href" >BLOG</a>
+                    </li>
+                </router-link>
                 <!-- <li class="nav-item">
         <a class="nav-link" href="#">POS</a>
       </li> -->
@@ -70,6 +79,7 @@ export default {
     data() {
         return {
             isClose: false,
+            isHome:false
 
         }
     },
@@ -119,7 +129,23 @@ export default {
 
             thisComp.$store.dispatch('scrollEvent', thisComp.$refs.headerer.offsetHeight)
         })
+
+
+        
+    },
+    watch:{
+    $route (to, from){
+    // hide homepage sections links
+        if (this.$route.path !== "/home") { 
+            this.isHome = true
+           
+        } else {
+            this.isHome = false
+           
+        }
     }
+}, 
+    
 }
 </script>
 
@@ -152,7 +178,9 @@ header {
     transition: 0.5s;
 
 }
-
+.hide {
+    display: none;
+}
 .slidefix {
     position: fixed;
 
@@ -249,18 +277,19 @@ header {
 
     }
 
-    #navbarNav[data-v-af5d225e] {
+    #navbarNav {
         justify-content: flex-end;
         position: fixed;
         height: 100vh;
-        top: 0;
+        top: 0px;
         right: -300px;
         width: 300px;
         background-color: #000000;
         transition: 0.5s;
+        border-top: 2px solid #f19221;
     }
 
-    #navbarNav[data-v-af5d225e].openMenu {
+    #navbarNav.openMenu {
         right: 0;
         transition: 0.5s;
     }
@@ -276,7 +305,7 @@ header {
     }
 
     .navbar-nav {
-        margin-top: 30px;
+        margin-top: 50px;
     }
 }
 
@@ -284,12 +313,15 @@ header {
 
 .navbar-toggler.x {
     border: none;
-    z-index: 3;
+    z-index: inherit;
     position: absolute;
-    right: 0;
-    top: 15px;
+    right: 15px;
+    /* top: 15px; */
 }
-
+ #navbarNav .navbar-toggler.x {
+     top:15px;
+     
+ }
 .navbar-toggler.x:focus {
     outline: none;
 }

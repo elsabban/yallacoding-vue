@@ -12,7 +12,7 @@
                            <p>We are committed to providing our customers with exceptional service <br> while offering our employees the best training. </p>
                       </div>
                    </div>
-                   <div v-for="(item,index) in clientData.homepage.clients" :key="index" class="col-lg-4 col-md-6 col-sm-6 col-12">
+                   <div v-for="(item,index) in clientData.clients" :key="index" class="col-lg-4 col-md-6 col-sm-6 col-12">
                        <div class="client-box">
                            <div class="client-img" :style="{ 'background-image': 'url(' + item.path + ')' }"></div>
                            <div class="client-desc">

@@ -1,8 +1,6 @@
 <template>
     <div>
-        <section class="intro">
-            <div class="img-holder" style="background-image:url(src/assets/img/webapp.jpg)"></div>
-        </section>
+        <intro-sec pageTitle="CONTACT US"></intro-sec>
         <section class="contact-page pt-5 pb-5">
     <div class="container">
         <div class="row">
@@ -12,8 +10,8 @@
                      <h2>Contact Us</h2>
                      <P>“Don’t be a stranger, just say hello”</P>
                      <h6>Phone :</h6>
-                     <a href="tel:0123456789"><i class="fas fa-phone-square"></i> 0123456789</a><br>
-                     <a href="tel:0123456789"><i class="fas fa-phone-square"></i> 0123456789</a>
+                     <a href="tel:01114095210"><i class="fas fa-phone-square"></i>  01114095210</a><br>
+                     <a href="tel:01552731175"><i class="fas fa-phone-square"></i> 01552731175</a>
                      <h6>Mail :</h6>
                      <a href="mailto:#"><i class="fas fa-envelope"></i> info@yalla-coding.com</a>
                      <h6>Location :</h6>
@@ -87,8 +85,12 @@
     </div>
 </template>
 <script>
+import introSec from './common/intro.vue'
 export default {
     
+    components:{
+        introSec,
+    }
 }
 </script>
 <style scoped>
@@ -130,24 +132,5 @@ ul.contact-social li a:hover {
 .contact-detail > h6 {
     color:white
 }
-.intro .img-holder {
-    width: 100%;
-    height: 400px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-.intro .img-holder::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: rgb(0, 0, 0);
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.8295693277310925) 0%, rgba(0, 0, 0, 0.8911939775910365) 100%);
-}
-
 
 </style>

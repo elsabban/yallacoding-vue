@@ -1,13 +1,13 @@
 <template>
     <div v-if="getData != null" class="main-slider">
-        <carousel   v-if="getData.homepage.slider.length > 0" 
+        <carousel   v-if="getData.slider.length > 0" 
         animateOut="animate__animated animate__fadeOut"
         :autoplay="true" 
         :loop="true"
         :nav="false" 
         :autoplayTimeout="9000"
         :items="1" >
-           <div class="slide-item"  v-for="(item,index) in getData.homepage.slider" :key="index" :style="{ 'background-image': 'url(' + item.path + ')' }">
+           <div class="slide-item"  v-for="(item,index) in getData.slider" :key="index" :style="{ 'background-image': 'url(' + item.path + ')' }">
                <div class="caption " >
                   <h2>{{item.title | capitalize}}</h2>
                   <h3 >{{item.description }}</h3>
