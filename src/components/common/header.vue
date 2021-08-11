@@ -18,17 +18,17 @@
             <ul class="navbar-nav">
                 <router-link to="/home" v-slot="{ navigate,isActive,isExactActive ,href}" custom>
                     <li class="nav-item " @click="navigate">
-                        <a class="nav-link" data-scroll="home" :href="href" :class="[isActive && 'active', isExactActive && 'router-link-exact-active']" @click=" scroll('home')">HOME</a>
+                        <a class="nav-link" data-scroll="home" :href="href" :class="[isActive && 'active', isExactActive && 'router-link-exact-active']" >HOME</a>
                     </li>
                 </router-link>
-                <router-link to="/home" v-slot="{ navigate,isExactActive ,href}" custom>
-                    <li class="nav-item " :class="{hide : isHome}" @click="navigate">
-                        <a class="nav-link" :class="[ isExactActive && 'router-link-exact-active']" data-scroll="about" :href="href" @click=" scroll('about')">ABOUT</a>
+                <router-link to="/about-page" v-slot="{ isActive,navigate,isExactActive ,href}" custom>
+                    <li class="nav-item " @click="navigate">
+                        <a class="nav-link" :class="[ isActive && 'active',isExactActive && 'router-link-exact-active']" data-scroll="about" :href="href" >ABOUT</a>
                     </li>
                 </router-link>
-                <router-link to="/home" v-slot="{ navigate,isExactActive,href}" custom>
-                    <li class="nav-item " :class="{hide : isHome}" @click="navigate">
-                        <a class="nav-link" :class="[ isExactActive && 'router-link-exact-active']" data-scroll="service" :href="href" @click=" scroll('service')">SERVICES</a>
+                <router-link to="/services-page" v-slot="{ isActive,navigate,isExactActive,href}" custom>
+                    <li class="nav-item " @click="navigate">
+                        <a class="nav-link" :class="[isActive && 'active', isExactActive && 'router-link-exact-active']" data-scroll="service" :href="href" >SERVICES</a>
                     </li>
                 </router-link>
                 <!-- <router-link to="/home" tag="li" class="nav-item ">
@@ -79,7 +79,7 @@ export default {
     data() {
         return {
             isClose: false,
-            isHome:false
+            // isHome:false
 
         }
     },
@@ -89,16 +89,16 @@ export default {
             this.isClose = !this.isClose;
         },
 
-        scroll(id) {
+        // scroll(id) {
 
-            //  this.isActive = !this.isActive
-            if (this.$route.path == "/home") {
-                this.$store.dispatch('scroll', id)
-            }
+        //     //  this.isActive = !this.isActive
+        //     if (this.$route.path == "/home") {
+        //         this.$store.dispatch('scroll', id)
+        //     }
 
-            // this.moveClass(event)
+        //     // this.moveClass(event)
 
-        },
+        // },
         // moveClass(e) {
 
         //     if (document.querySelectorAll('.nav-item a.active').length > 0) {
@@ -117,34 +117,34 @@ export default {
             return this.$store.getters.scrolled
         }
     },
-    created() {
-        const thisComp = this;
+    // created() {
+    //     const thisComp = this;
 
-        document.addEventListener("scroll", function () {
+    //     document.addEventListener("scroll", function () {
 
-            if (thisComp.$route.path == "/home") {
-                thisComp.$store.dispatch('detectSection', 'about');
-                thisComp.$store.dispatch('detectSection', 'service');
-            }
+    //         if (thisComp.$route.path == "/home") {
+    //             thisComp.$store.dispatch('detectSection', 'about');
+    //             thisComp.$store.dispatch('detectSection', 'service');
+    //         }
 
-            thisComp.$store.dispatch('scrollEvent', thisComp.$refs.headerer.offsetHeight)
-        })
+    //         thisComp.$store.dispatch('scrollEvent', thisComp.$refs.headerer.offsetHeight)
+    //     })
 
 
         
-    },
-    watch:{
-    $route (to, from){
-    // hide homepage sections links
-        if (this.$route.path !== "/home") { 
-            this.isHome = true
+    // },
+    // watch:{
+    // $route (to, from){
+    // // hide homepage sections links
+    //     if (this.$route.path !== "/home") { 
+    //         this.isHome = true
            
-        } else {
-            this.isHome = false
+    //     } else {
+    //         this.isHome = false
            
-        }
-    }
-}, 
+    //     }
+    // }
+// }, 
     
 }
 </script>

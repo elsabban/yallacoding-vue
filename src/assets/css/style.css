@@ -137,6 +137,16 @@ section.about {
     padding: 100px 0;
 }
 
+section.about-page {
+    background-image: url(../img/lines.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #222429;
+    background-size: cover;
+    padding: 100px 0;
+    position: relative;
+}
+
 section.clients {
     background-image: url(../img/pattern-2.png);
     background-position: center center;

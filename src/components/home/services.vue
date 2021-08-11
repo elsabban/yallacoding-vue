@@ -13,7 +13,9 @@
                        <div class="service-box">
                            <div class="icon">
                               <i :class="item.icon"></i>
-                               <a href=""><i class="fad fa-chevron-double-right"></i></a>
+                                 <router-link :to="'/single-service/' + item.id" v-slot="{ navigate,href}" custom>
+                               <a  :href="href" @click="navigate"><i class="fad fa-chevron-double-right"></i></a>
+                               </router-link>
                            </div>
                            <h5>{{item.title | capitalize}}</h5>
                            <P> {{item.desc}}</P>
