@@ -1,4 +1,5 @@
 <template>
+<div>
 <header ref="headerer" :class="{slidefix : scrolled}">
     <nav class="navbar navbar-expand-lg navbar-light ">
         <a class="navbar-brand" href="#">
@@ -72,10 +73,17 @@
         </div>
     </nav>
 </header>
+
+    <loader></loader>
+</div>
 </template>
 
 <script>
+import loader from './loader.vue'
 export default {
+    components:{
+      loader
+    },
     data() {
         return {
             isClose: false,
@@ -117,20 +125,16 @@ export default {
             return this.$store.getters.scrolled
         }
     },
-    // created() {
-    //     const thisComp = this;
+    created() {
+        const thisComp = this;
 
-    //     document.addEventListener("scroll", function () {
+        document.addEventListener("scroll", function () {
 
-    //         if (thisComp.$route.path == "/home") {
-    //             thisComp.$store.dispatch('detectSection', 'about');
-    //             thisComp.$store.dispatch('detectSection', 'service');
-    //         }
+          
+            thisComp.$store.dispatch('scrollEvent', thisComp.$refs.headerer.offsetHeight)
+        })
 
-    //         thisComp.$store.dispatch('scrollEvent', thisComp.$refs.headerer.offsetHeight)
-    //     })
-
-
+    }
         
     // },
     // watch:{
@@ -172,7 +176,7 @@ export default {
 
 header {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     top: 0;
     transition: 0.5s;
@@ -297,7 +301,6 @@ header {
     .navbar-expand-lg .navbar-nav .nav-item .nav-link {
         padding-right: 15px;
         padding-left: 15px;
-        /* border-bottom:1px solid #f49522; */
     }
 
     .navbar-expand-lg .navbar-nav .nav-item:not(:last-child) .nav-link {
@@ -309,14 +312,12 @@ header {
     }
 }
 
-/* ANIMATED X */
 
 .navbar-toggler.x {
     border: none;
     z-index: inherit;
     position: absolute;
     right: 15px;
-    /* top: 15px; */
 }
  #navbarNav .navbar-toggler.x {
      top:15px;

@@ -4,7 +4,6 @@ import App from './App.vue'
 import Vuex from 'vuex'
 import store from './store/store'
 import VueDOMPurifyHTML from 'vue-dompurify-html'
-
 Vue.use(VueDOMPurifyHTML)
 
 Vue.use(Vuex)
@@ -18,8 +17,6 @@ new Vue({
     render: h => h(App),
     store,
     router,
-    methods: {
 
-    }
 
 })

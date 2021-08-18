@@ -1,46 +1,15 @@
 <template>
 <div>
     <intro-sec pageTitle="OUR SERVICES"></intro-sec>
-    <div v-if="servData === undefined" class="not-found" style="">
-        <h2><span>Sorry</span>, something went wrong </h2>
-    </div>
-    <section v-if="servData != null" class="single-service">
+
+    <section class="single-service">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-12">
-                    <div class="serv-right">
-                        <div class="serv-img">
-                            <img src="src/assets/img/8.jpg" class="img-fluid" alt="" srcset="">
-                        </div>
-                    </div>
-                    <div class="serv-content">
-                        <h3>{{servData.title}}</h3>
-                        <P> Lorem Ipsum is simply dummytext of the printing and typesetting industry. Lorem Ipsum has been the industry’sstandard dummy text ever since the 1500s, when an unknown printer took a galley oftype and scrambled it to make a type specimen book. It has survived not only fivecenturies, but also the leap into electronic typesetting, remaining essentiallyunchanged.</P>
-                        <div class="serv-steps">
-                            <img src="src/assets/img/9.jpg" class="img-fluid" alt="">
-                            <div class="steps">
-                                <h5>PLANNING & STRATEGY</h5>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <ul class="list-unstyled">
-                                    <li><i class="fad fa-check"></i> Research beyond the business plan</li>
-                                    <li><i class="fad fa-check"></i> Marketing options and rates</li>
-                                    <li><i class="fad fa-check"></i> The ability to turnaround consulting</li>
-                                    <li><i class="fad fa-check"></i> Customer engagement matters</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p class="mt-5">Need something changed or is there something not quite working the way you envisaged?
-                            Is your van a little old and tired and need refreshing? Lorem Ipsum is simply dummy text of the
-                            printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever
-                            since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book. <br><br>
 
-                            Need something changed or is there something not quite working the way you envisaged? Is your van a little old and tired and need refreshing? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-4 col-12">
+                <transition mode="out-in" name="fade">
+                    <router-view :key="$route.params.id" name="insideView"></router-view>
+                </transition>
+                <div class="col-lg-4 ml-auto col-12">
                     <div class="all-serv">
                         <h4>ALL SERVICES</h4>
                         <ul class="list-unstyled">
@@ -88,28 +57,29 @@ export default {
     components: {
         introSec
     },
-    methods: {
-        goTo(payload) {
-            this.$router.go('/single-service/' + payload)
-        }
-    },
-    watch: {
-        $route(to, from) {
-            // hide homepage sections links
-            if (to.params.id != from.params.id) {
-                this.$store.dispatch('getSingleServ', this.$route.params.id)
-            }
-        }
-    },
+    // methods: {
+    //     goTo(payload) {
+    //         this.$store.dispatch('getSingleServ',payload)
+    //     }
+    // },
+    // watch: {
+    //     $route(to, from) {
+    //         // hide homepage sections links
+    //         if (to.params.id != from.params.id) {
+    //             this.$router.push(this.$route.params.id)
+    //         }
+    //     }
+    // },
     mounted() {
-        this.$store.dispatch('getSingleServ', this.$route.params.id)
+        window.scrollTo(0, 0)
+
     },
-    computed: {
-        servData() {
-            console.log(this.$store.getters.singleServ)
-            return this.$store.getters.singleServ
-        }
-    },
+    // computed: {
+    //     servData() {
+    //         console.log(this.$store.getters.singleServ)
+    //         return this.$store.getters.singleServ
+    //     }
+    // },
     // watch:{
     // $route (to, from){
     // // hide homepage sections links
@@ -122,18 +92,6 @@ export default {
 </script>
 
 <style scoped>
-.not-found {
-    background: #1b1b1b;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-weight: bold
-}
-.not-found span {
-    color: red;
-}
 .single-service .serv-img {
     border-radius: 15px;
     overflow: hidden;

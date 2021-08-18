@@ -14,7 +14,9 @@ export default new Vuex.Store({
         post: null,
         servicesPage: null,
         singleServ: null,
-        postCheck: null
+        postCheck: null,
+        singleClient: null,
+        hideIt: false,
     },
     getters: {
         getData(state) {
@@ -39,41 +41,64 @@ export default new Vuex.Store({
         },
         postCheck(state) {
             return state.postCheck
+        },
+        singleClient(state) {
+            return state.singleClient
+        },
+        hideIt(state) {
+            return state.hideIt
         }
+
     },
     actions: {
         getData({ commit, dispatch, state }, payload) {
+            state.hideIt = false
+
             axios.get('https://my-json-server.typicode.com/elsabban/fakeApi/' + payload)
                 .then(res => {
                     state.dataFetched = res.data
-                        // console.log(res.data)
+                    console.log('notloaded')
+                    state.hideIt = true
                 })
                 .catch(err => {
                     console.log(err)
                 })
+
         },
         getBlogData({ commit, dispatch, state }, payload) {
+            state.hideIt = false
+
+
             axios.get('https://my-json-server.typicode.com/elsabban/fakeApi2/' + payload)
                 .then(res => {
                     state.blogData = res.data
+                    state.hideIt = true
 
                     // console.log(res.data)
                 })
                 .catch(err => {
                     console.log(err)
                 })
+
         },
         getServices({ commit, dispatch, state }, payload) {
+            state.hideIt = false
+
             axios.get('https://my-json-server.typicode.com/elsabban/fakeApi3/services')
                 .then(res => {
                     state.servicesPage = res.data
-                    console.log(state.servicesPage)
+
+                    state.hideIt = true
+
                 })
                 .catch(err => {
                     console.log(err)
                 })
+
+
         },
         getSingleBlog({ commit, dispatch, state }, payload) {
+            state.hideIt = false
 
             if (state.blogData != null) {
                 state.postCheck = state.blogData.posts.find(item => item.id === payload)
@@ -82,7 +107,10 @@ export default new Vuex.Store({
                     post: state.blogData.posts.find(item => item.id === payload),
                     tags: state.blogData.tags,
                     latest: state.blogData.latest
+
                 }
+                state.hideIt = true
+
             } else {
                 axios.get('https://my-json-server.typicode.com/elsabban/fakeApi2/blog')
                     .then(res => {
@@ -95,6 +123,7 @@ export default new Vuex.Store({
                             tags: state.blogData.tags,
                             latest: state.blogData.latest
                         }
+                        state.hideIt = true
 
                     })
                     .catch(err => {
@@ -106,22 +135,54 @@ export default new Vuex.Store({
 
         },
         getSingleServ({ commit, dispatch, state }, payload) {
-
+            state.hideIt = false
             if (state.servicesPage != null) {
 
                 state.singleServ = state.servicesPage.find(item => item.id == payload)
+                state.hideIt = true
 
             } else {
                 axios.get('https://my-json-server.typicode.com/elsabban/fakeApi3/services')
                     .then(res => {
                         state.servicesPage = res.data
                         state.singleServ = state.servicesPage.find(item => item.id == payload)
+                        state.hideIt = true
                     })
                     .catch(err => {
                         console.log(err)
                     })
             }
 
+
+
+        },
+        getSingleClient({ commit, dispatch, state }, payload) {
+            // in case there is a client page
+
+            // if (state.clientPage != null) {
+
+            //     state.singleClient = state.clientPage.find(item => item.id == payload)
+
+            // } else {
+            //     axios.get('https://my-json-server.typicode.com/elsabban/fakeApi4/clients')
+            //         .then(res => {
+            //             state.clientPage = res.data
+            //             state.singleClient = state.clientPage.find(item => item.id == payload)
+            //         })
+            //         .catch(err => {
+            //             console.log(err)
+            //         })
+            // }
+            state.hideIt = false
+            axios.get('https://my-json-server.typicode.com/elsabban/fakeApi4/clients')
+                .then(res => {
+                    // state.clientPage = res.data
+                    state.singleClient = res.data.find(item => item.id == payload)
+                    state.hideIt = true
+                })
+                .catch(err => {
+                    console.log(err)
+                })
 
 
         },

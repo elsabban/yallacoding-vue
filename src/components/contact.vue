@@ -94,43 +94,6 @@ export default {
 }
 </script>
 <style scoped>
-label {
- 
-    color: #dc851e;
-}
- ul.contact-social {
-    display: flex;
-    justify-content: baseline;
-    align-self: baseline;
-    align-items: center;
-    flex-direction: row;
-    margin: 15px 0;
-   
-}
-ul.contact-social li {
-    margin: 0 5px 5px;
-    
-   
- 
-}
-ul.contact-social li a {
-    color: white;
-        width: 30px;
-    height:30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-items: center;
-    text-decoration: none;
-    background-color: #353535;
- border-radius: 50%;
- transition: 0.3s;
-}
-ul.contact-social li a:hover {
-  color: #f49522;
-}
-.contact-detail > h6 {
-    color:white
-}
+
 
 </style>
